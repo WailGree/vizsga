@@ -1,0 +1,74 @@
+1. FTP telepítése
+apt-get update 
+apt-get install vsftpd
+
+2. FTP konfigurálása
+mcedit /etc/vsftpd.conf
+
+anonymous_enable=YES
+
+6. FTP szolgáltatás újraindítása
+service vsftpd start
+
+mcedit /etc/vsftpd.conf0
+
+# nincs anonymous bejelentkezés
+anonymous_enable=NO
+# helyi felhasználok bejelentkezhetnek
+local_enable=YES
+# feltölthetnek a felhasználok
+write_enable=YES
+
+Próbáljuk ki egy új felhasználóval, vegyünk fel egy ftpuser felhasználót a szerverre:
+
+useradd ftpuser –c „FTP felhasználó” –g users –m –d /home/ftpuser –s /bin/bash
+passwd ftpuser
+
+1. Ha azt szeretnénk, hogy az FTP felhasználóink csak a saját tárhelyüket érjék el (tehát ne lássák a
+másét), akkor a következőt kell módosítani:
+chroot_local_user=YES
+chroot_list_enable=NO
+allow_writeable_chroot=YES
+
+2. Ha minden felhasználó kiléphet a saját mappájából, kivéve azokat, akiket felveszek a listába:
+chroot_local_user=NO
+chroot_list_enable=YES
+chroot_list_file= /etc/vsftpd.chroot_list
+allow_writeable_chroot=YES
+
+Írjuk be a /etc/vsftpd.chroot_list –ba, hogy kik nem léphetnek ki a saját mappájukból.
+
+3. Ha senki nem léphet ki a mappájából, csak az, akit felveszünk a listába:
+chroot_local_user=YES
+chroot_list_enable=YES
+chroot_list_file= /etc/vsftpd.chroot_list
+allow_writeable_chroot=YES
+Írjuk be a /etc/vsftpd.chroot_list –ba, hogy kik léphetnek ki a saját mappájukból.
+
+Felhasználók tiltása, engedélyezése
+
+1. Ha néhány felhasználónak nem szeretnénk engedélyezni az FTP elérést, akkor:
+userlist_deny=YES
+userlist_file=/etc/vsftpd.denied_users
+Majd hozzuk létre a /etc/vsftpd.denied_users fájlt, ahová a kitiltott felhasználókat írhatjuk. Egy
+felhasználónevet egy sorba írjunk!
+
+2. Ha csak néhány felhasználónak szeretnénk engedélyezni az FTP hozzáférést:
+userlist_deny=NO
+userlist_enable=YES
+userlist_file=/etc/vsftpd.allowed_users
+Majd a /etc/vsftpd.allowed_users fájlba írjuk be azokat a felhasználókat, akik elérheti az FTP
+szervert. Azok a felhasználók, akik ki vannak tiltva, egy hibaüzenetet kapnak, ha megpróbálnak csatlakozni.
+
+Egyéb beállítások
+
+Látszódjanak a rejtett fájlok (azok, melyeknek neve . – pont – jellel kezdődik):
+force_dot_files=YES
+A fájl információinak elrejtése (tulajdonos, csoport)
+hide_ids=YES
+Hányan csatlakozhatnak egy IP címről
+max_per_ip=5
+Hány kliens lehet fent egyszerre a szerveren
+max_clients=20
+Mentsük el a konfigurációs fájlt, majd indítsuk újra a kiszolgálót:
+service vsftpd start
