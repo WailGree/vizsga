@@ -1,0 +1,31 @@
+WordPress odal készítése:
+
+klónozz le-MAC címek újrainicializálása, linkelt klón!-, vagy hozz létre egy új szervert!
+
+Indítás előtt szerkezd és a hálózatnál csak egy BRIDGEL-kártyát rakj be!
+
+    1. WordPress szerver indítása
+    2. sudo -s (eztán kéri és add meg neki a super user jszót!)
+    3. apt-get update
+    4. apt-get install lamp-server^
+    5. itt feldob egy jszó ablakot, adj neki jszót!
+    6. mysql -u root -p
+    7. CREATE DATABASE wordpressdb;
+    8. CREATE USER wordpressuser@localhost IDENTIFIED BY 'wordpresspassword';
+    9. GRANT ALL PRIVILEGES ON wordpressdb.* TO wordpressuser@localhost; FLUSH PRIVILEGES;
+    10. exit
+    11. cd /tmp
+    12. wget http://wordpress.org/latest.zip
+    13. unzip -q latest.zip -d /var/www/html/
+    14. chown -R www-data:www-data /var/www/html/wordpress
+    15. chmod -R 755 /var/www/html/wordpress
+    16. mkdir -p /var/www/html/wordpress/wp-content/uploads
+    17. chown -R www-data:www-data /var/www/html/wordpress/wp-content/uploads 
+    18. ifconfig -itt kiírja az ip címeket és csatlakozz a belső csatoló címére(http://SAJÁT IP/wordpress), DE ha nem jó
+    19. service apache2 restart
+    20. apt-get install php7.0-mysql
+
+
+Így már indulnia kell!
+Válaszd ki a nyelvet(van magyar is).
+Ebben a mappában található JPG fájl megnyításával kell bejelentkezni!
