@@ -69,6 +69,8 @@ sudo systemctl status gogs
 
 
 # 5. A  /home/git/custom/conf/app.ini fájl tartalma:
+mkdir -p /home/git/custom/conf/
+mcedit /home/git/custom/conf/app.ini
 #############################################/home/git/custom/conf/app.ini fájl kezdete
 
 APP_NAME = gogs
