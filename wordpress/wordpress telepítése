@@ -7,7 +7,8 @@ Indítás előtt szerkezd és a hálózatnál csak egy BRIDGEL-kártyát rakj be
     1. WordPress szerver indítása
     2. sudo -s (eztán kéri és add meg neki a super user jszót!)
     3. apt-get update
-    4. apt-get install lamp-server^
+    4. sudo apt-get install tasksel -y^
+        tasksel install lamp-server
     5. itt feldob egy jszó ablakot, adj neki jszót!
     6. mysql -u root -p
     7. CREATE DATABASE wordpressdb;
