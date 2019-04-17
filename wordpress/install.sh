@@ -3,7 +3,7 @@ echo "Installation of Wordpress has been started."
 apt-get update 
 apt-get install tasksel -y
 tasksel install lamp-server
-echo "SQL rész. Root jelszó igényeltetik.A belépés után egyszerűen írd be, hogy: source <sql.sql helye>"
+echo "SQL rész. Root jelszó igényeltetik."
 mysql -u root -p -Bse "
 CREATE DATABASE wordpressdb;
 CREATE USER wordpressuser@localhost IDENTIFIED BY 'wordpresspassword';
