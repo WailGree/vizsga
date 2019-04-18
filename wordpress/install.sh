@@ -16,6 +16,8 @@ chown -R www-data:www-data /var/www/html/wordpress
 chmod -R 755 /var/www/html/wordpress
 mkdir -p /var/www/html/wordpress/wp-content/uploads
 chown -R www-data:www-data /var/www/html/wordpress/wp-content/uploads 
-apt-get install php-mysql -y
+mkdir -p /var/www/html/wordpress/tmp
+chmod 777 /var/www/html/wordpress/tmp
+apt-get install php-mysql php-gd -y
 service apache2 restart
 
