@@ -20,4 +20,11 @@ mkdir -p /var/www/html/wordpress/tmp
 chmod 777 /var/www/html/wordpress/tmp
 apt install php-mysql php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip -y
 service apache2 restart
+echo "ipcím/wordpress
+magyar nyelv kiválasztása
+Adatbázis neve: wordpressdb
+Felhasználónév: wordpressuser
+Jelszó: wordpresspassword
+Tábla előtag: wp_
+"
 
