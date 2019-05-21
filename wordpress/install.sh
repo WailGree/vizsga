@@ -1,7 +1,7 @@
 
 echo "Installation of Wordpress has been started."
 apt-get update 
-apt-get install tasksel -y
+apt install tasksel -y
 tasksel install lamp-server
 echo "SQL rész. Root jelszó igényeltetik."
 mysql -u root -p -Bse "
@@ -18,6 +18,6 @@ mkdir -p /var/www/html/wordpress/wp-content/uploads
 chown -R www-data:www-data /var/www/html/wordpress/wp-content/uploads 
 mkdir -p /var/www/html/wordpress/tmp
 chmod 777 /var/www/html/wordpress/tmp
-apt-get install php-mysql php-gd -y
+apt install php-mysql php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip -y
 service apache2 restart
 
